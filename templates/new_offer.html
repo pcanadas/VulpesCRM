@@ -1,0 +1,229 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+<main class="col-md-12 sm-auto col-sm-10 px-sm-4 py-4">
+    <div class="col-md-12">
+        <div class="card"> <!--Creacion del objeto card-->
+            <div class="card-header">
+                <legend>Nueva oferta</legend>
+                {% if error %}
+                <p style="color: red;"><strong>Error:</strong> {{ error }}</p>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <form action="/crear-oferta" method="post" class="needs-validation" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="form-group col">
+                            {{ form.noferta.label(class_="col-form-label-sm") }}
+                            {{ form.noferta(class_="form-control", size=12) }}<br>
+                            {% for error in form.noferta.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.fecha.label(class_="col-form-label-sm") }}
+                            {{ form.fecha(class_="form-control", size=8) }}
+                            <small id="fechaHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                            {% for error in form.fecha.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.id_empresa.label(class_="col-form-label-sm") }}
+                            {{ form.id_empresa(class_="form-select") }}<br>
+                            {% for error in form.id_empresa.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            {{ form.cliente.label(class_="col-form-label-sm") }}
+                            {{ form.cliente(class_="form-control") }}<br>
+                            {% for error in form.cliente.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.nombre.label(class_="col-form-label-sm") }}
+                            {{ form.nombre(class_="form-control") }}<br>
+                            {% for error in form.nombre.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.telefono.label(class_="col-form-label-sm") }}
+                            {{ form.telefono(class_="form-control") }}<br>
+                            {% for error in form.telefono.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.email.label(class_="col-form-label-sm") }}
+                            {{ form.email(class_="form-control") }}<br>
+                            {% for error in form.email.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.ciudad.label(class_="col-form-label-sm") }}
+                            {{ form.ciudad(class_="form-control") }}<br>
+                            {% for error in form.ciudad.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            {{ form.nombre_producto.label(class_="col-form-label-sm") }}
+                            {{ form.nombre_producto(class_="form-control") }}<br>
+                            {% for error in form.nombre_producto.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.marca.label(class_="col-form-label-sm") }}
+                            {{ form.marca(class_="form-control") }}<br>
+                            {% for error in form.marca.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            {{ form.importe.label(class_="col-form-label-sm") }}
+                            {{ form.importe(class_="form-control") }}<br>
+                            {% for error in form.importe.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.descuento.label(class_="col-form-label-sm") }}
+                            {{ form.descuento(class_="form-control") }}<br>
+                            {% for error in form.descuento.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.fecha_demo.label(class_="col-form-label-sm") }}
+                            {{ form.fecha_demo(class_="form-control") }}
+                            <small id="fecha_demoHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                            {% for error in form.fecha_demo.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.fecha_visita.label(class_="col-form-label-sm") }}
+                            {{ form.fecha_visita(class_="form-control") }}
+                            <small id="fecha_visitaHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                            {% for error in form.fecha_visita.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.probabilidad.label(class_="col-form-label-sm") }}
+                            {{ form.probabilidad(class_="form-select") }}<br>
+                            {% for error in form.probabilidad.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.via.label(class_="col-form-label-sm") }}
+                            {{ form.via(class_="form-select") }}<br>
+                            {% for error in form.via.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            {{ form.persona.label(class_="col-form-label-sm") }}
+                            {{ form.persona(class_="form-control") }}<br>
+                            {% for error in form.persona.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.fecha_compra.label(class_="col-form-label-sm") }}
+                            {{ form.fecha_compra(class_="form-control") }}
+                            <small id="fecha_compraHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                            {% for error in form.fecha_compra.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.resultado.label(class_="col-form-label-sm") }}
+                            {{ form.resultado(class_="form-select") }}<br>
+                            {% for error in form.resultado.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.fecha_resultado.label(class_="col-form-label-sm") }}
+                            {{ form.fecha_resultado(class_="form-control") }}
+                            <small id="fecha_resultadoHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                            {% for error in form.fecha_resultado.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form.grupo_marketing.label(class_="col-form-label-sm") }}
+                            {{ form.grupo_marketing(class_="form-select") }}<br>
+                            {% for error in form.grupo_marketing.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            {{ form2.fecha_contacto.label(class_="col-form-label-sm") }}
+                            {{ form2.fecha_contacto(class_="form-control") }}
+                            <small id="fecha_contactoHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                            {% for error in form2.fecha_contacto.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form2.modo.label(class_="col-form-label-sm") }}
+                            {{ form2.modo(class_="form-control") }}<br>
+                            {% for error in form2.modo.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col">
+                            {{ form2.nueva_fecha.label(class_="col-form-label-sm") }}
+                            {{ form2.nueva_fecha(class_="form-control") }}
+                            <small id="nueva_fechaHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                            {% for error in form2.nueva_fecha.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            {{ form2.comentarios_contacto.label(class_="col-form-label-sm") }}
+                            {{ form2.comentarios_contacto(class_="form-control") }}
+                            <small id="comentarios_contactoHelp" class="form-text text-muted">Comentarios sobre el primer contacto realizado</small><br>
+                            {% for error in form2.comentarios_contacto.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.comentarios.label(class_="col-form-label-sm") }}
+                        <textarea class="form-control" name="comentarios" id="comentarios" rows="3"></textarea>
+                        <br>
+                        {% for error in form.comentarios.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-primary mt-3") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

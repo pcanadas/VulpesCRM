@@ -1,0 +1,53 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+<main class="col-md-12 sm-auto col-sm-10 px-md-4 py-4">
+    <div class="col-md-12">
+        <div class="card"> <!--Creacion del objeto card-->
+            <div class="card-header">
+                <legend>Nuevo contacto de seguimiento de oferta</legend>
+                {% if error %}
+                <p style="color: red;"><strong>Error:</strong> {{ error }}
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <form action="/new_contact/{{entrada_id}}" method="post" class="needs-validation" novalidate>
+                    {{ form.hidden_tag() }}
+                     <div class="form-group col-6 col-md-2">
+                        {{ form.fecha_contacto.label }}
+                        {{ form.fecha_contacto(class_="form-control", readonly=true)}}<br>
+                        {% for error in form.fecha_contacto.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-6 col-md-2">
+                        {{ form.modo.label }}
+                        {{ form.modo(class_="form-select")}}<br>
+                        {% for error in form.modo.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-6 col-md-2">
+                        {{ form.nueva_fecha.label }}
+                        {{ form.nueva_fecha(class_="form-control", size=12) }}
+                        <small id="nueva_fechaHelp" class="form-text text-muted">dd/mm/aaaa</small><br>
+                        {% for error in form.nueva_fecha.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-12">
+                        {{ form.comentarios_contacto.label }}
+                        {{ form.comentarios_contacto(class_="form-control")}}<br>
+                        {% for error in form.comentarios_contacto.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-primary mt-3") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

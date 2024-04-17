@@ -1,0 +1,46 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-dark col-12" data-bs-theme="dark">
+    <div class="container-fluid">
+    &nbsp;&nbsp;&nbsp;<a class="navbar-brand" href="/">Vulpes CRM</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/index">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/historial">Ofertas</a>
+        </li>
+        {% if current_user.is_admin %}
+        <li class="nav-item">
+          <a class="nav-link" href="/usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">Informes</a>
+        </li>
+        {% endif %}
+      </ul>
+        <ul class="navbar-nav ms-auto">
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link " href="#"> {{ current_user.name }}&nbsp;{{ current_user.surname }} </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/logout"> {{ session["username"]}} (Salir)</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link " href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/registro">Registro</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<!-- End Navbar -->

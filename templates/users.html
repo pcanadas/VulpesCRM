@@ -1,0 +1,93 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+<main class="col-md-12 ms-sm-auto col-sm-10 px-md-4 py-4">
+    {% with messages = get_flashed_messages(with_categories = True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if error %}
+    <p style="color: red;"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Usuarios</h1>
+        {% if current_user.is_admin %}
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <a href="{{ url_for('show_signup_form')}}" class="btn btn-sm btn-outline-secondary">Nuevo usuario</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="card border-primary mb-3 small">
+        <table id="multi-filter-select" class="table table-hover">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Administrador</th>
+                    {% if current_user.is_admin %}
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th scope="row">{{user.name}}</th>
+                        <td>{{user.surname}}</td>
+                        <td>{{user.email}}</td>
+                        {% if user.is_admin == 0 %}
+                            <td><input class="form-check-input mt-2" type="checkbox" id="IsAdmin" value="{{ user.is_admin }}" disabled=""></td>
+                        {% else %}
+                            <td><input class="form-check-input mt-2" type="checkbox" id="IsAdminC" value="{{ user.is_admin }}" checked="" disabled=""></td>
+                        {% endif %}
+                        {% if current_user.is_admin %}
+                        <td><a href="{{ url_for('view_user', entrada_id=user.id)}}" class="btn btn-outline-success btn-sm">Ver</a></td>
+                        <td><a href="{{ url_for('editu', entrada_id=user.id)}}" class="btn btn-outline-info btn-sm">Editar</a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock content %}
+<!-- Specific Page JS  -->
+{% block javascripts %}
+<script >
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({
+        });
+
+        $('#multi-filter-select').DataTable( {
+            "pageLength": 5,
+            initComplete: function () {
+                this.api().columns().every( function () {
+                    var column = this;
+                    var select = $('<select class="form-control"><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                            );
+
+                        column
+                        .search( val ? '^'+val+'$' : '', true, false )
+                        .draw();
+                    } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    } );
+                } );
+            }
+        });
+    });
+</script>
+{% endblock javascripts %}

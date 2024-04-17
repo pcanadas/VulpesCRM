@@ -1,0 +1,83 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+<main class="col-md-12 sm-auto col-sm-10 px-md-4 py-4">
+    {% with messages = get_flashed_messages(with_categories = True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if error %}
+    <p style="color: red;"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Contactos de seguimiento de oferta</h1>
+        <h2 class="h3">Oferta Nº {{noferta}}</h2>
+    </div>
+    <div class="card border-primary mb-3 small">
+        <table id="multi-filter-select" class="table table-hover">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Modo</th>
+                    <th scope="col">Nueva Fecha</th>
+                    <th scope="col">Comentarios</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contacto in contactos %}
+                    <tr>
+                        <th scope="row">{{contacto.fecha_contacto.strftime("%d-%m-%Y")}}</th>
+                        <td>{{contacto.modo}}</td>
+                        <td>{{contacto.nueva_fecha.strftime("%d-%m-%Y")}}</td>
+                        <td>{{contacto.comentarios_contacto}}</td>
+                        <td><a href="{{ url_for('edit', entrada_id=contacto.id_oferta)}}" class="btn btn-outline-info btn-sm"><i class="bi bi-pencil"></i></a></td>
+                        <td><a href="{{ url_for('new_contact', entrada_id=contacto.id_oferta)}}" class="btn btn-outline-info btn-sm"><i class="bi bi-chat-text"></i></a></td>
+                        {% if current_user.is_admin %}
+                        <td><a href="{{ url_for('delete_contact', entrada_id=contacto.id)}}" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock content %}
+<!-- Specific Page JS  -->
+{% block javascripts %}
+<script >
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({
+        });
+
+        $('#multi-filter-select').DataTable( {
+            "pageLength": 5,
+            initComplete: function () {
+                this.api().columns().every( function () {
+                    var column = this;
+                    var select = $('<select class="form-control"><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                            );
+
+                        column
+                        .search( val ? '^'+val+'$' : '', true, false )
+                        .draw();
+                    } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    } );
+                } );
+            }
+        });
+    });
+</script>
+{% endblock javascripts %}

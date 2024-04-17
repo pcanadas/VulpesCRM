@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registro de usuarios</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+        <!-- Bootstrap Font Icon CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- Google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&family=Josefin+Sans&display=swap" rel="stylesheet">
+
+        <!-- Nuestra hoja de estilo (main.css) -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+        <main class="container p-4">
+            <div align="center">
+            <img class="mb-4" src="{{ url_for('static', filename='img/logo.png') }}" alt="" width="350" height="89"></img></div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3 my-auto"> <!--Este div ocupará 2 columnas de 4 del espacio (centrado)-->
+                    <div class="card"> <!--Creacion del objeto card-->
+                        <div class="card-header">
+                            {% if error %}
+                            <p style="color: red;"><strong>Error:</strong> {{ error }}
+                            {% endif %}
+                            <form action="" method="post" class="needs-validation" novalidate>
+                                <legend>Registro de usuarios</legend>
+                                    {{ form.hidden_tag() }}
+                                    <div class="col-6">
+                                        {{ form.name.label }}
+                                        {{ form.name(class_="form-control", size=64) }}<br>
+                                        {% for error in form.name.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-6">
+                                        {{ form.surname.label }}
+                                        {{ form.surname(class_="form-control", size=64) }}<br>
+                                        {% for error in form.surname.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.email.label }}
+                                        {{ form.email(class_="form-control") }}<br>
+                                        {% for error in form.email.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div>
+                                        {{ form.password.label }}
+                                        {{ form.password(class="form-control") }}<br>
+                                        {% for error in form.password.errors %}
+                                        <span style="color: red;">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        {{ form.submit(class="btn btn-primary mt-3") }}
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+          'use strict'
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          const forms = document.querySelectorAll('.needs-validation')
+
+          // Loop over them and prevent submission
+          Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+          })
+        })()
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>

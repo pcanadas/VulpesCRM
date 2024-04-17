@@ -1,0 +1,89 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+<main class="col-md-12 sm-auto col-sm-10 px-md-4 py-4">
+    {% with messages = get_flashed_messages(with_categories = True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if error %}
+    <p style="color: red;"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Ofertas</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <a href="{{ url_for('crear_oferta')}}" class="btn btn-sm btn-outline-secondary">Nueva oferta</a>
+            </div>
+        </div>
+    </div>
+    <div class="card border-primary mb-3 small">
+        <table id="ofertas" class="table table-hover">
+            <thead>
+                <tr class="table-light">
+                    <th scope="col" style="width:5%; text-align: center">Oferta</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col" style="width:7%; text-align: center">Fecha</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col" style="width:7%; text-align: center">Importe</th>
+                    <th scope="col" style="width:4%; text-align: center">Dto</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col" style="width:7%; text-align: center">U.Contacto</th>
+                    <th scope="col">Modo</th>
+                    <th scope="col">Resultado</th>
+                    <th scope="col">Persona</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entrada in entradas %}
+                    <tr>
+                        <th scope="row" style="text-align: center">{{entrada.noferta}}</th>
+                        {% for item in empresaid %} <!-- Ponemos el nombre de la empresa, en vez de su código -->
+                            {% if item[0] == entrada.id %}
+                            <td>{{ item[1] }}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{entrada.fecha.strftime("%d-%m-%Y")}}</td>
+                        <td>{{entrada.cliente}}</td>
+                        <td style="text-align: right">{{ "{:,.2f} €".format(entrada.importe)}}</td>
+                        <td style="text-align: center">{{entrada.descuento}} %</td>
+                        <td>{{entrada.nombre_producto}}</td>
+                        <td>{{entrada.marca}}</td>
+                        {% for registro in registros: %}
+                            {% if registro[0] == entrada.id: %}
+                                <td>{{registro[1].strftime("%d-%m-%Y")}}</td>
+                                <td>{{registro[2]}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{entrada.resultado}}</td>
+                        <td>{{entrada.persona}}</td>
+                        <td><a href="{{ url_for('new_contact', entrada_id=entrada.id)}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-chat-text"></i></a></td>
+                        <td><a href="{{ url_for('view_contact', entrada_id=entrada.id)}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-card-list"></i></a></td>
+                        <td><a href="{{ url_for('edit', entrada_id=entrada.id)}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i></a></td>
+                        {% if current_user.is_admin %}
+                        <td><a href="{{ url_for('delete', entrada_id=entrada.id)}}" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock content %}
+<!-- Specific Page JS  -->
+{% block javascripts %}
+<script >
+    /* Initialization of datatables */
+    $(document).ready(function() {
+        $("#ofertas").DataTable();
+    } );
+</script>
+{% endblock javascripts %}

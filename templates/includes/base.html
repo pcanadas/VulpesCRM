@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Seguimiento de ofertas</title>
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+        <!-- Bootstrap Font Icon CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- Google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&family=Josefin+Sans&display=swap" rel="stylesheet">
+
+        <!-- Nuestra hoja de estilo (main.css) -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+        <!-- Favicon para mostrar en los navegadores -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+        <!--Datatable plugin CSS file -->
+        <link href="https://cdn.datatables.net/v/bs5/dt-2.0.3/cr-2.0.0/date-1.5.2/rg-1.5.0/datatables.min.css" rel="stylesheet">
+
+
+
+    </head>
+    <body>
+        <header class="navbar sticky-top bg-dark flex-md-nowrap p-0" data-bs-theme="dark">
+          <!-- Incluimos el menu de navegación -->
+          {% include 'includes/navigation.html' %}
+        </header>
+        <div class="container-fluid">
+            <div class="row">
+
+			    {% block content %}{% endblock content %}
+
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!--Datatable plugin JS library file -->
+        <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/cr-2.0.0/date-1.5.2/rg-1.5.0/datatables.min.js"></script>
+
+        <!-- Specific Page JS  -->
+        {% block javascripts %}{% endblock javascripts %}
+
+    </body>
+</html>
