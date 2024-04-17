@@ -6,16 +6,16 @@ Python based open source CRM developed using Flask framework
 
 It's still WORK IN PROGRESS (I'm still building the modules)
 
-#Features List
+## Features List
 
 VulpesCRM contains the following modules (along with the completion progress report):
 
 
-#Installation Requirements
+## Installation Requirements
 
-  Python3
-  SQLite
-  pip3
-  virtualenv
+  1- Python3
+  2- SQLite
+  3- pip3
+  4- virtualenv
 
 ## Installation Steps
