@@ -13,9 +13,9 @@ VulpesCRM contains the following modules (along with the completion progress rep
 
 ## Installation Requirements
 
-  1- Python3
-  2- SQLite
-  3- pip3
-  4- virtualenv
+  - Python3
+  - SQLite
+  - pip3
+  - virtualenv
 
 ## Installation Steps
