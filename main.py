@@ -3,7 +3,8 @@ from datetime import date
 from sqlalchemy import func
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_login import LoginManager, login_required, current_user, logout_user, login_user
-from werkzeug.urls import url_parse
+#from werkzeug.urls import url_parse
+from urllib.parse import urlparse
 from forms import SignupForm, LoginForm, NewOfferForm, get_choices, NewContactForm
 import db
 import json
@@ -44,7 +45,7 @@ def login():
             flash('Login correcto', 'success')
 
             next_page = request.args.get('next')
-            if not next_page or url_parse(next_page).netloc != '':
+            if not next_page or urlparse(next_page).netloc != '':
                 next_page = url_for('home')
             return redirect(next_page)
         else:
@@ -184,7 +185,7 @@ def show_signup_form():
             # Dejamos al usuario logueado
             login_user(user, remember=True)
             next_page = request.args.get('next', None)
-            if not next_page or url_parse(next_page).netloc != '':
+            if not next_page or urlparse(next_page).netloc != '':
                 next_page = url_for('home')
             return redirect(next_page)
     return render_template("signup_form.html", form=form, error=error)
@@ -253,7 +254,7 @@ def crear_oferta():
             contacto.save()
 
             next_page = request.args.get('next', None)
-            if not next_page or url_parse(next_page).netloc != '':
+            if not next_page or urlparse(next_page).netloc != '':
                 next_page = url_for('historial')
             return redirect(next_page)
     return render_template("new_offer.html", form=form, form2=form2, error=error)
@@ -278,7 +279,7 @@ def new_contact(entrada_id):
         contacto.save()
         flash('Contacto creado', 'success')
         next_page = request.args.get('next', None)
-        if not next_page or url_parse(next_page).netloc != '':
+        if not next_page or urlparse(next_page).netloc != '':
             next_page = url_for('historial')
         return redirect(next_page)
     return render_template("new_contact.html", form=form, entrada_id=entrada_id, contactos=contactos)
@@ -372,7 +373,7 @@ def edit(entrada_id):
         db.session.commit()
         flash('Oferta editada con éxito', 'success')
         next_page = request.args.get('next', None)
-        if not next_page or url_parse(next_page).netloc != '':
+        if not next_page or urlparse(next_page).netloc != '':
             next_page = url_for('historial')
         return redirect(next_page)
     return render_template('edit.html', edit_item=edit_item, oferta=oferta, form=form, entrada_id=entrada_id)
@@ -395,7 +396,7 @@ def editu(entrada_id):
         db.session.commit()
         flash('Cliente editado con éxito', 'success')
         next_page = request.args.get('next', None)
-        if not next_page or url_parse(next_page).netloc != '':
+        if not next_page or urlparse(next_page).netloc != '':
             next_page = url_for('usuarios')
         return redirect(next_page)
     return render_template('edit.html', edit_item=edit_item, users=users, form=form, entrada_id=entrada_id)
