@@ -21,6 +21,13 @@ VulpesCRM contains the following modules (along with the completion progress rep
   - pip3
   - virtualenv
 
+## Built with :nut_and_bolt:
+
+  - [Flask](https://flask.palletsprojects.com/en/3.0.x/) - The web framework used
+  - [SQLAlchemy](https://www.sqlalchemy.org/) - Toolkit and Object Relational Mapper for working with SQL
+  - [Bootstrap](https://getbootstrap.com/) - Powerful, extensible, and feature-packed frontend toolkit
+  - [WTForms](https://wtforms.readthedocs.io/en/3.1.x/) - Forms validation and rendering library for Python web development
+
 ## Installation Steps :wrench:
 
   1. Clone the repository:
