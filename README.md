@@ -1,3 +1,7 @@
+<p align="center" width="100%">
+    <img width="18%" src="static/img/vulpes.svg"> 
+</p>
+
 # VulpesCRM
 
 Open Source CRM created in Python with the Flask framework, for managing offers in the work environment.
@@ -51,8 +55,8 @@ VulpesCRM contains the following modules (along with the completion progress rep
   You can find much more about how to use this project in our [Wiki](https://github.com/Pcanadas/VulpesCRM/wiki)
 
   ## Authors :black_nib:
-  
-  **Patricia Cañadas** - *Initial Work* - [Pcanadas](https://github.com/Pcanadas)
+
+  - **Patricia Cañadas** - *Initial Work* - [Pcanadas](https://github.com/Pcanadas)
 
   ## License :page_facing_up:
 
