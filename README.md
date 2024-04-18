@@ -1,14 +1,17 @@
 # VulpesCRM
 
-Open Source CRM based on Python's Flask framework
-
-Python based open source CRM developed using Flask framework
+Open Source CRM created in Python with the Flask framework, for managing offers in the work environment.
 
 It's still WORK IN PROGRESS (I'm still building the modules)
 
 ## Features List
 
 VulpesCRM contains the following modules (along with the completion progress report):
+  - Login screen
+  - Home page (with alerts for delays in contacting the customer as established in the offer tracking)
+  - Offers page with customer contact tracking
+  - User management (different access level depending on user type)
+  - Report dashboard
 
 
 ## Installation Requirements
@@ -19,3 +22,8 @@ VulpesCRM contains the following modules (along with the completion progress rep
   - virtualenv
 
 ## Installation Steps
+
+https://github.com/Pcanadas/VulpesCRM.git
+cd/ VulpesCRM
+pip install -r requirements.txt
+python main.py
