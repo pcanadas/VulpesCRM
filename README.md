@@ -23,7 +23,14 @@ VulpesCRM contains the following modules (along with the completion progress rep
 
 ## Installation Steps
 
-`https://github.com/Pcanadas/VulpesCRM.git`
-`cd/ VulpesCRM`
-`pip install -r requirements.txt`
-"python main.py"
+
+  `git clone https://github.com/Pcanadas/VulpesCRM.git`
+
+  `cd/ VulpesCRM`
+
+  `pip install -r requirements.txt`
+
+  `python main.py`
+
+  
+
