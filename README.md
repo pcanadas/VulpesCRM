@@ -12,10 +12,21 @@ Open Source CRM created in Python with the Flask framework, for managing offers 
 
 VulpesCRM contains the following modules (along with the completion progress report):
   - Login screen
+    
+       ![login](https://github.com/Pcanadas/VulpesCRM/assets/98885002/6d65a130-5aa0-4b3e-8f8c-81eeac1f3b33)
   - Home page (with alerts for delays in contacting the customer as established in the offer tracking)
+
+       ![home](https://github.com/Pcanadas/VulpesCRM/assets/98885002/87d20540-6aec-45a1-bc06-ddc373f00f3f)
   - Offers page with customer contact tracking
+
+       ![offers](https://github.com/Pcanadas/VulpesCRM/assets/98885002/65f3496c-a149-4c0c-83fc-6b10060984e6)
   - User management (different access level depending on user type)
+
+       ![users](https://github.com/Pcanadas/VulpesCRM/assets/98885002/fed162dd-7e1a-43f0-833f-25f021348071)
+
   - Report dashboard
+
+       ![report](https://github.com/Pcanadas/VulpesCRM/assets/98885002/566a7c8d-5c70-4099-8420-aec42d3a8f05)
 
 
 ## Installation Requirements :clipboard:
@@ -56,7 +67,7 @@ VulpesCRM contains the following modules (along with the completion progress rep
 
   ## Authors :black_nib:
 
-  - **Patricia Cañadas** - *Initial Work* - [Pcanadas](https://github.com/Pcanadas)
+   - **Patricia Cañadas** - *Initial Work* - [Pcanadas](https://github.com/Pcanadas)
 
   ## License :page_facing_up:
 
