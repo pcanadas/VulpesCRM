@@ -67,7 +67,7 @@ VulpesCRM contains the following modules (along with the completion progress rep
 
   ## Authors :black_nib:
 
-   - **Patricia Cañadas** - *Initial Work* - [Pcanadas](https://github.com/Pcanadas)
+   - **Patricia Cañadas** - *Initial Work* - [pcanadas](https://github.com/pcanadas)
 
   ## License :page_facing_up:
 
