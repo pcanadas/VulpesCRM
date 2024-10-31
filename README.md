@@ -33,7 +33,6 @@ VulpesCRM contains the following modules (along with the completion progress rep
 
   - Python3
   - SQLite
-  - pip3
   - virtualenv
 
 ## Built with :nut_and_bolt:
@@ -44,10 +43,11 @@ VulpesCRM contains the following modules (along with the completion progress rep
   - [WTForms](https://wtforms.readthedocs.io/en/3.1.x/) - Forms validation and rendering library for Python web development
 
 ## Installation Steps :wrench:
+These instructions will get you a working copy of the project on your local machine for development and testing purposes.
 
   1. Clone the repository:
 
-    `git clone https://github.com/Pcanadas/VulpesCRM.git` 
+    `git clone https://github.com/pcanadas/VulpesCRM.git` 
 
   2. Enter the directory:
 
@@ -63,7 +63,7 @@ VulpesCRM contains the following modules (along with the completion progress rep
 
   ## Wiki :book:
 
-  You can find much more about how to use this project in our [Wiki](https://github.com/Pcanadas/VulpesCRM/wiki)
+  You can find much more about how to use this project in our [Wiki](https://github.com/pcanadas/VulpesCRM/wiki)
 
   ## Authors :black_nib:
 
